@@ -268,8 +268,8 @@ npm install
 
 Desenvolvido por **Marcus Vinnicius**
 
-- GitHub: [@Marcus Vinnicius]([https://github.com/seu-usuario](https://github.com/omarcus212))
-- LinkedIn: [Marcus Vinnicius]([https://linkedin.com/in/seu-perfil](https://www.linkedin.com/in/marcus-vinnicius-524aa1206/))
+- GitHub: [@MarcusVinnicius]([https://github.com/omarcus212])
+- LinkedIn: [MarcusVinnicius]([https://www.linkedin.com/in/marcus-vinnicius-524aa1206])
 - Email: marcusvinniciusouza@gmail.com
 
 ---
