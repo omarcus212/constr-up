@@ -39,7 +39,7 @@
       </div>
     </div>
 
-    <!-- Filtros (Colapsável) -->
+    <!-- Filtros -->
     <div v-if="showFilters" class="filters-panel">
       <div class="filters-grid">
         <div class="form-group">
@@ -84,7 +84,7 @@
       </div>
     </div>
 
-    <!-- Ações em Massa -->
+    <!-- Delete em Massa -->
     <div v-if="selectedProducts.length > 0" class="bulk-actions">
       <span>{{ selectedProducts.length }} produto(s) selecionado(s)</span>
       <button @click="deleteSelected" class="btn-danger">
@@ -191,7 +191,7 @@
         </tbody>
       </table>
 
-      <!-- Estado vazio -->
+      <!-- mock -->
       <div v-if="!loading && products.length === 0" class="empty-state">
         <svg
           width="80"
@@ -316,7 +316,6 @@ import { ref, computed, onMounted } from "vue";
 import api from "@/services/api";
 import Swal from "sweetalert2";
 
-// Estados
 const showFilters = ref(false);
 const showModal = ref(false);
 const isEditing = ref(false);
@@ -353,8 +352,6 @@ const isAllSelected = computed(() => {
   );
 });
 
-// ========== MÉTODOS DA API ==========
-
 // GET - Buscar produtos
 const fetchProducts = async () => {
   loading.value = true;
@@ -362,7 +359,6 @@ const fetchProducts = async () => {
   try {
     const response = await api.getProducts(filters.value);
 
-    // Laravel retorna { success: true, data: [...], message: '...' }
     if (response.data.success) {
       products.value = response.data.data;
     } else {
@@ -409,7 +405,7 @@ const createProduct = async () => {
       });
 
       closeModal();
-      fetchProducts(); // Recarrega a lista
+      fetchProducts();
     }
   } catch (error) {
     console.error("Erro ao criar produto:", error);
@@ -458,12 +454,11 @@ const updateProduct = async () => {
         text: "Produto atualizado com sucesso!",
       });
       closeModal();
-      fetchProducts(); // Recarrega a lista
+      fetchProducts();
     }
   } catch (error) {
     console.error("Erro ao atualizar produto:", error);
 
-    // Pega a mensagem de erro da API
     if (error.response?.data?.errors?.message) {
       errorMessage.value = error.response.data.errors.message;
     } else if (error.response?.data?.message) {
@@ -518,7 +513,7 @@ const deleteProduct = async (id) => {
         title: "Sucesso!",
         text: "Produto deletado com sucesso!",
       });
-      fetchProducts(); // Recarrega a lista
+      fetchProducts();
     }
   } catch (error) {
     console.error("Erro ao deletar produto:", error);
@@ -572,7 +567,7 @@ const deleteSelected = async () => {
         text: `${selectedProducts.value.length} produto(s) excluído(s) com sucesso!`,
       });
       selectedProducts.value = [];
-      fetchProducts(); // Recarrega a lista
+      fetchProducts();
     }
   } catch (error) {
     console.error("Erro ao deletar produtos:", error);
@@ -657,7 +652,10 @@ const toggleSelectAll = (event) => {
 };
 
 const formatPrice = (price) => {
-  return parseFloat(price).toFixed(2).replace(".", ",");
+  return new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  }).format(price);
 };
 
 const getStockClass = (stock) => {
@@ -673,13 +671,6 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* Reset e Base */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .products-page {
   max-width: 1400px;
   margin: 0 auto;

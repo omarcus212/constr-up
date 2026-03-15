@@ -2,7 +2,7 @@ import axios from 'axios'
 
 // Configuração base da API
 const api = axios.create({
-    baseURL: 'http://localhost:8000/api', // URL do Laravel
+    baseURL: 'http://localhost:8000/api',
     headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -13,7 +13,6 @@ const api = axios.create({
 api.interceptors.response.use(
     response => response,
     error => {
-        // Tratamento de erros customizado
         if (error.response) {
             // Erro com resposta do servidor
             console.error('Erro da API:', error.response.data)
@@ -33,7 +32,7 @@ export default {
      */
     getProducts(filters = {}, page = 1) {
         const params = { page, ...filters }
-        // Remove parâmetros vazios
+
         Object.keys(params).forEach(key => {
             if (!params[key]) delete params[key]
         })
