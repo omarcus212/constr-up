@@ -146,7 +146,7 @@ cd front
 npm install
 ```
 
-### 3. Configure a URL da API
+### 3. Configure a URL da API (caso necessário) 
 
 Edite `src/services/api.js` e confirme a URL:
 
@@ -268,9 +268,9 @@ npm install
 
 Desenvolvido por **Marcus Vinnicius**
 
-- GitHub: [@seu-usuario](https://github.com/seu-usuario)
-- LinkedIn: [Seu Perfil](https://linkedin.com/in/seu-perfil)
-- Email: seu.email@exemplo.com
+- GitHub: [@Marcus Vinnicius]([https://github.com/seu-usuario](https://github.com/omarcus212))
+- LinkedIn: [Marcus Vinnicius]([https://linkedin.com/in/seu-perfil](https://www.linkedin.com/in/marcus-vinnicius-524aa1206/))
+- Email: marcusvinniciusouza@gmail.com
 
 ---
 
